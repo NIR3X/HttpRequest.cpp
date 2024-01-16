@@ -36,7 +36,7 @@ CHttpRequest::CUrl CHttpRequest::ParseUrl(std::wstring url) {
 		}
 		index = httpRequestUrl.host.find(L":");
 		if (index != std::wstring::npos) {
-			httpRequestUrl.port = _wtoi(httpRequestUrl.host.substr(index + 1).c_str());
+			httpRequestUrl.port = std::wcstol(httpRequestUrl.host.substr(index + 1).c_str(), nullptr, 10);
 			httpRequestUrl.host = httpRequestUrl.host.substr(0, index);
 		}
 	}
