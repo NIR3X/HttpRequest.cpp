@@ -91,7 +91,7 @@ std::vector<uint8_t> CHttpRequest::Request(const std::wstring& url, CHttpRequest
 					if (dataLen > 0) {
 						data = (LPVOID)options.data.data();
 					}
-					for (auto& header : options.headers) {
+					for (const auto& header : options.headers) {
 						WinHttpAddRequestHeaders(
 							hReq,
 							(header.first + L": " + header.second).c_str(),
