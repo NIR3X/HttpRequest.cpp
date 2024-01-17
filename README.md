@@ -21,11 +21,21 @@ Here is an example of how to use this package:
 #include <iostream>
 
 int main() {
-	uint32_t statusCode = 0;
-	auto response = CHttpRequest::Request(L"https://google.com", CHttpRequest::COptions(), statusCode);
+	uint32_t statusCode;
+	auto response = CHttpRequest::Request(L"https://example.com/index.html", CHttpRequest::COptions(), statusCode);
+	std::cout << "Response: " << std::string(response.begin(), response.end()) << std::endl;
+	std::cout << "Status code: " << statusCode << std::endl;
+
+	statusCode = 0;
+	CHttpRequest::COptions options;
+	options.method = L"POST";
+	options.headers[L"Content-Type"] = L"application/x-www-form-urlencoded";
+	std::string data = "field1=value1&field2=value2";
+	options.data = { data.begin(), data.end() };
+	response = CHttpRequest::Request(L"https://example.com/test", options, statusCode);
 	std::cout << "Response: " << std::string(response.begin(), response.end()) << std::endl;
 	std::cout << "Status code: " << statusCode << std::endl;
 }
 ```
 
-This example makes a GET request to "https://google.com" and prints the response and the status code. The CHttpRequest::COptions() function is used to specify options for the request, such as the HTTP method, headers, and data.
+This code example demonstrates making a GET request to "https://example.com/index.html" and printing the response along with the status code. It also shows how to make a POST request to "https://example.com/test" with custom options, including specifying the HTTP method, headers, and data. The response and status code for the POST request are also printed.
