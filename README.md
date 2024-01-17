@@ -21,13 +21,13 @@ Here is an example of how to use this package:
 #include <iostream>
 
 int main() {
-	uint32_t statusCode;
-	auto response = CHttpRequest::Request(L"https://example.com/index.html", CHttpRequest::COptions(), statusCode);
+	uint32_t statusCode = 0;
+	auto response = CHttpRequest::Request(L"https://example.com/index.html", CHttpRequest::COptions {}, statusCode);
 	std::cout << "Response: " << std::string(response.begin(), response.end()) << std::endl;
 	std::cout << "Status code: " << statusCode << std::endl;
 
 	statusCode = 0;
-	CHttpRequest::COptions options;
+	CHttpRequest::COptions options = {};
 	options.method = L"POST";
 	options.headers[L"Content-Type"] = L"application/x-www-form-urlencoded";
 	std::string data = "field1=value1&field2=value2";
