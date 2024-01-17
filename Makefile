@@ -13,7 +13,7 @@ build: $(OBJ)
 	$(AR) r -o $(DEST) $^
 
 build-test: build
-	$(CXX) $(OBJ) $(TEST_SRC) -o $(TEST_DEST) $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $(OBJ) $(TEST_SRC) -o $(TEST_DEST) $(LDFLAGS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
